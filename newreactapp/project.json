@@ -1,0 +1,72 @@
+{
+  "name": "newreactapp",
+  "$schema": "../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "newreactapp/src",
+  "projectType": "application",
+  "targets": {
+    "build": {
+      "executor": "@nx/vite:build",
+      "outputs": ["{options.outputPath}"],
+      "defaultConfiguration": "production",
+      "options": {
+        "outputPath": "dist/newreactapp"
+      },
+      "configurations": {
+        "development": {
+          "mode": "development"
+        },
+        "production": {
+          "mode": "production"
+        }
+      }
+    },
+    "serve": {
+      "executor": "@nx/vite:dev-server",
+      "defaultConfiguration": "development",
+      "options": {
+        "buildTarget": "newreactapp:build"
+      },
+      "configurations": {
+        "development": {
+          "buildTarget": "newreactapp:build:development",
+          "hmr": true
+        },
+        "production": {
+          "buildTarget": "newreactapp:build:production",
+          "hmr": false
+        }
+      }
+    },
+    "preview": {
+      "executor": "@nx/vite:preview-server",
+      "defaultConfiguration": "development",
+      "options": {
+        "buildTarget": "newreactapp:build"
+      },
+      "configurations": {
+        "development": {
+          "buildTarget": "newreactapp:build:development"
+        },
+        "production": {
+          "buildTarget": "newreactapp:build:production"
+        }
+      }
+    },
+    "test": {
+      "executor": "@nx/vite:test",
+      "outputs": ["{options.reportsDirectory}"],
+      "options": {
+        "passWithNoTests": true,
+        "reportsDirectory": "../coverage/newreactapp"
+      }
+    },
+    "lint": {
+      "executor": "@nx/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["newreactapp/**/*.{ts,tsx,js,jsx}"]
+      }
+    }
+  },
+  "tags": []
+}

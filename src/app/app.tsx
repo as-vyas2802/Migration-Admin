@@ -2,6 +2,7 @@
 import styles from './app.module.css';
 
 import NxWelcome from './nx-welcome';
+import { SharedUi } from 'shared-ui';
 
 export function App() {
   return (
